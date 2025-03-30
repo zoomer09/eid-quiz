@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Name</title>
+    <script>
+        function goToMCQ() {
+            let name = document.getElementById('name').value;
+            if (name.trim() !== "") {
+                window.location.href = 'mcq.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Your Name</h2>
+    <input type='text' id='name' placeholder='Your Name'><br>
+    <button onclick='goToMCQ()'>Next</button>
+</body>
+</html>
